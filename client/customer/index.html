@@ -14,5 +14,18 @@
   <cards-component></cards-component>
   <subscription-form-component></subscription-form-component>
   <faqs-component></faqs-component>
+
+  <script>
+    (async () => {
+      const fpPromise = import('https://fpjscdn.net/v3/NeAQ2rBjEQTFbaHR6d8o')
+      .then(FingerprintJS => FingerprintJS.load())
+
+      const fp = await fpPromise
+      const result = await fp.get()
+
+      console.log(result)
+
+    })()
+  </script>
 </body>
 </html>
