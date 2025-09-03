@@ -90,7 +90,8 @@ module.exports = function (sequelize, DataTypes) {
   )
 
   Model.associate = function (models) {
-
+    Model.hasMany(models.CustomerBot, { as: 'customerBots', foreignKey: 'botId' })
+    Model.belongsToMany(models.Customer, { as: 'customers', through: models.CustomerBot, foreignKey: 'botId' })
   }
 
   return Model

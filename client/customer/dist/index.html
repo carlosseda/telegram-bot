@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="module" crossorigin src="/assets/index-wmWOkG-7.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BbzFkH_Y.css">
+</head>
+<body>
+  <page-component base-path=""></page-component>
+
+  <script>
+    (async () => {
+      const fpPromise = import('https://fpjscdn.net/v3/NeAQ2rBjEQTFbaHR6d8o')
+      .then(FingerprintJS => FingerprintJS.load())
+
+      const fp = await fpPromise
+      const result = await fp.get()
+
+      console.log(result)
+
+    })()
+  </script>
+</body>
+</html>

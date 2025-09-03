@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const Model = sequelize.define('UserCredential',
+  const UserCredential = sequelize.define('UserCredential',
     {
       id: {
         type: DataTypes.INTEGER,
@@ -9,43 +9,15 @@ module.exports = function (sequelize, DataTypes) {
       },
       userId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Por favor, rellena el campo "userId".'
-          },
-          notEmpty: {
-            msg: 'Por favor, rellena el campo "userId".'
-          }
-        }
+        allowNull: false
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {
-          isEmail: {
-            msg: 'Debe ser un e-mail válido'
-          },
-          notNull: {
-            msg: 'Por favor, rellena el campo "Email".'
-          },
-          notEmpty: {
-            msg: 'Por favor, rellena el campo "Email".'
-          }
-        }
+        allowNull: false
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Por favor, rellena el campo "Contraseña".'
-          },
-          notEmpty: {
-            msg: 'Por favor, rellena el campo "Contraseña".'
-          }
-        }
+        allowNull: false
       },
       lastPasswordChange: {
         type: DataTypes.DATE,
@@ -85,9 +57,9 @@ module.exports = function (sequelize, DataTypes) {
     }
   )
 
-  Model.associate = function (models) {
-
+  UserCredential.associate = function (models) {
+    UserCredential.belongsTo(models.User, { as: 'user', foreignKey: 'userId' })
   }
 
-  return Model
+  return UserCredential
 }
