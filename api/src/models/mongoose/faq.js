@@ -2,8 +2,9 @@ module.exports = (mongoose) => {
   const schema = mongoose.Schema(
     {
       name: String,
-      locales: {
-        type: mongoose.Schema.Types.Mixed
+      items: {
+        type: Map,
+        of: mongoose.Schema.Types.Mixed
       },
       deletedAt: Date
     },

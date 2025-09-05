@@ -10,11 +10,17 @@ class Hero extends HTMLElement {
     await this.render()
   }
 
-  loadData () {
-    this.data = {
-      title: 'Un bot de Telegram para buscar tus productos favoritos',
-      description: 'Ahorra dinero perfeccionando y automatizando tus búsquedas gracias a nuestra IA.',
-      buttonText: 'Comenzar'
+  async loadData () {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/heroes/${this.getAttribute('name')}`)
+
+      if (response.status === 500) {
+        throw response
+      }
+
+      this.data = await response.json()
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -347,7 +353,9 @@ class Hero extends HTMLElement {
           </p>
         </div>
         <div class="hero-button">
-          <button>${this.data.buttonText}</button>
+          <a href="${this.data.buttonLink}">
+            <button>${this.data.buttonText}</button>
+          </a>
         </div>
       </div>
 

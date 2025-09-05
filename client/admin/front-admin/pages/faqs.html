@@ -45,15 +45,45 @@
           'general': {
             'noLocale': [
               {'name': 'id', 'element':'input', 'type': 'hidden'},
-              {'name': 'name', 'element':'input', 'type': 'text', 'label': 'Nombre', 'width': 'full-width'}
-            ],
-            'locale': [
-              {'name': 'question', 'element':'input', 'type': 'text', 'label': 'Pregunta', 'width': 'full-width'},
-              {'name': 'answer', 'element':'textarea', 'label': 'Respuesta', 'width': 'full-width'}
+              {'name': 'name', 'element':'input', 'type': 'text', 'label': 'Nombre', 'width': 'full-width'},
+              {'element': 'dependants', 'childs': [
+                {
+                  'name': 'faqs-items', 
+                  'label': 'Faqs',
+                  'locale': true,
+                  'structure': [
+                    {'element': 'subform', 'width': 'half-width', 'endpoint': '/api/admin/faqs-items', 'structure': 
+                      {
+                        'tabs': [
+                          {'name': 'general', 'label': 'General'}
+                        ],
+                        'inputs': {
+                          'general': {
+                            'noLocale': [
+                              {'name': 'id', 'element':'input', 'type': 'hidden'},
+                              {'name': 'question', 'element':'input', 'type': 'text', 'label': 'Pregunta', 'width': 'full-width'},
+                              {'name': 'answer', 'element':'textarea', 'label': 'Respuesta', 'width': 'full-width'}
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    {'element': 'subtable', 'width': 'half-width', 'endpoint': '/api/admin/faqs-items', 'structure': 
+                      {
+                        'headers': [
+                          {'label': 'Pregunta', 'field': 'question'}
+                        ],
+                        'recordButtons': ['edit', 'remove']
+                      }
+                    }
+                  ]
+                }
+              ]}
             ]
           }
         }
-      }"/>
+      }"
+    />
     </form-component>
     
   </crud-component>

@@ -12,20 +12,17 @@ class Faqs extends HTMLElement {
   }
 
   async loadData () {
-    this.data = [
-      {
-        title: '¿Qué elementos principales se incluyen en el diseño de un sitio web personalizado?',
-        content: 'Lorem 2 ipsum dolor sit amet consectetur adipisicing elit. Dolores praesentium ratione itaque earum aperiam aliquam, error culpa fugiat ea corporis impedit. Ea illo et facilis nulla esse distinctio iste nesciunt.'
-      },
-      {
-        title: '¿Cuáles son los principios más importantes del diseño de sitios web?',
-        content: 'Lorem 3 ipsum dolor sit amet consectetur adipisicing elit. Dolores praesentium ratione itaque earum aperiam aliquam, error culpa fugiat ea corporis impedit. Ea illo et facilis nulla esse distinctio iste nesciunt.'
-      },
-      {
-        title: '¿Qué pasos incluye el proceso de diseño web profesional?',
-        content: 'Lorem 3 ipsum dolor sit amet consectetur adipisicing elit. Dolores praesentium ratione itaque earum aperiam aliquam, error culpa fugiat ea corporis impedit. Ea illo et facilis nulla esse distinctio iste nesciunt.'
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/faqs/${this.getAttribute('name')}`)
+
+      if (response.status === 500) {
+        throw response
       }
-    ]
+
+      this.data = await response.json()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   render () {
@@ -133,7 +130,7 @@ class Faqs extends HTMLElement {
       summary.appendChild(faqContentTitle)
 
       const faqTitle = document.createElement('h3')
-      faqTitle.textContent = faq.title
+      faqTitle.textContent = faq.question
       faqContentTitle.appendChild(faqTitle)
 
       const faqButton = document.createElement('div')
@@ -146,7 +143,7 @@ class Faqs extends HTMLElement {
                 </svg>`
 
       const faqContent = document.createElement('p')
-      faqContent.textContent = faq.content
+      faqContent.textContent = faq.answer
       details.appendChild(faqContent)
     })
   }

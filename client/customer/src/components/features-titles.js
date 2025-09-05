@@ -10,17 +10,17 @@ class FeaturesTitles extends HTMLElement {
   }
 
   async loadData () {
-    this.data = [
-      {
-        title: 'Filtra',
-      },
-      {
-        title: 'Automatiza',
-      },
-      {
-        title: 'Ahorra',
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/feature-titles/${this.getAttribute('name')}`)
+
+      if (response.status === 500) {
+        throw response
       }
-    ]
+
+      this.data = await response.json()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   render () {
