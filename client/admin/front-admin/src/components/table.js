@@ -65,7 +65,6 @@ class Table extends HTMLElement {
         this.data = data.rows
 
         if (data.meta) {
-          this.total = data.meta.total
           this.currentPage = data.meta.currentPage
           this.lastPage = data.meta.pages
           this.size = data.meta.size

@@ -49,6 +49,7 @@ exports.findAll = async (req, res) => {
       meta: {
         total: count,
         pages: Math.ceil(count / limit),
+        size: limit,
         currentPage: page
       }
     }

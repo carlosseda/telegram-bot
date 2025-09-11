@@ -4,13 +4,13 @@ const Card = mongooseDb.Card
 
 exports.create = async (req, res) => {
   try {
-    req.body.images = await req.imageService.resizeImages(req.body.images)
-
+    console.log(req.body)
     const localeKey = Object.keys(req.body.locales)[0]
     req.body.locales[localeKey].id = uuid.v4()
     req.body.locales[localeKey].createdAt = new Date()
     req.body.locales[localeKey].updatedAt = new Date()
     req.body.locales[localeKey].deletedAt = null
+    req.body.locales[localeKey].images = await req.imageService.resizeImages(req.body.images)
 
     const update = {}
     update['items.' + localeKey] = req.body.locales[localeKey]
