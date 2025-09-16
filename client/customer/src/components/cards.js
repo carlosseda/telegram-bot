@@ -61,7 +61,6 @@ class Cards extends HTMLElement {
       }
 
       this.data = await response.json()
-      console.log(this.data)
     } catch (error) {
       console.log(error)
     }
