@@ -48,7 +48,7 @@ class TelegramService {
 
     if (!anchorId) return
 
-    await this.bot.sendMessage(this.groupId, `👤 Usuario ${threadId}: ${text}`, {
+    await this.bot.sendMessage(this.groupId, `👤 Usuario: ${text}`, {
       reply_to_message_id: anchorId
     })
   }

@@ -33,8 +33,8 @@ module.exports = class OpenAIService {
     }
   }
 
-  setThread (theadId) {
-    this.threadId = theadId
+  setThread (threadId) {
+    this.threadId = threadId
   }
 
   async createMessage (prompt) {

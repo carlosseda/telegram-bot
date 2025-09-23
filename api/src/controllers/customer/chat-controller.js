@@ -90,15 +90,18 @@ exports.assistantResponse = async (req, res) => {
       })
     }
 
+    let answer = openai.answer
+    try { answer = JSON.parse(openai.answer) } catch (_) {}
+
     const response = {
       threadId: openai.threadId,
       escalateToHuman,
-      answer: JSON.parse(openai.answer)
+      answer
     }
 
     res.status(200).send(response)
   } catch (error) {
-    console.log(error)
+    res.status(500).send({ message: 'Error al obtener el chat' })
   }
 }
 
