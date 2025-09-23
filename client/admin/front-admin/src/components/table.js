@@ -68,6 +68,7 @@ class Table extends HTMLElement {
           this.currentPage = data.meta.currentPage
           this.lastPage = data.meta.pages
           this.size = data.meta.size
+          this.total = data.meta.total
         }
       } else if (response.status === 500) {
         throw response
