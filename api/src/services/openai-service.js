@@ -111,6 +111,17 @@ module.exports = class OpenAIService {
     }
   }
 
+  async runPrompt (id, variables) {
+    const response = await this.openai.responses.create({
+      prompt: {
+        id,
+        variables
+      }
+    })
+
+    return response
+  }
+
   sleep (ms) {
     return new Promise((resolve) => setTimeout(resolve, ms))
   }
